@@ -227,20 +227,26 @@ export default function OPZPresaleUI() {
          {/* Left - Token Distribution Visual */}
 <div className="flex flex-col items-center justify-center gap-6 w-full">
   {/* Big Circle Donut */}
-  <motion.div className="w-64 h-64 rounded-full relative"
-    style={{
-      width: '256px',
-      height: '256px',
-      borderTop: '30px solid #ec4899',    // pink-500
-      borderRight: '30px solid #dc2626',  // red-600
-      borderBottom: '30px solid #facc15', // yellow-300
-      borderLeft: '30px solid #22c55e'    // green-500
-    }}
-    animate={{ rotate: [0, 360] }}
-                transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-  >
+  <motion.div
+  className="w-64 h-64 rounded-full relative" 
+  style={{
+    background: `conic-gradient(
+      #22c55e 0% 75%,     /* Green 75% */
+      #ec4899 75% 85%,    /* Pink 10% */
+      #dc2626 85% 95%,    /* Red 10% */
+      #facc15 95% 100%    /* Yellow 5% */
+    )`,
+    width: '384px', // Increased size
+    height: '384px', // Increased size
+    borderRadius: '50%', // Keeps the circle shape
+    border: '30px solid transparent', // 30px transparent border
+    backgroundClip: 'content-box', // Ensures the gradient is applied to the content area of the circle
+  }}
+  animate={{ rotate: [0, 360] }}
+  transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
+>
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="bg-black rounded-full w-32 h-32 flex flex-col items-center justify-center text-center border-4 border-white">
+      <div className="bg-black rounded-full w-48 h-48 flex flex-col items-center justify-center text-center border-4 border-white">
         <span className="text-xl font-bold">1,00,000</span>
         <span className="text-xs text-gray-400">Total Supply</span>
       </div>

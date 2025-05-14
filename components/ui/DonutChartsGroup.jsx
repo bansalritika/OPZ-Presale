@@ -38,10 +38,10 @@ const DonutChart = ({ percent, color, label }) => {
 const DonutChartsGroup = () => {
   return (
     <div className="flex flex-wrap gap-4">
-      <DonutChart percent={10} color="#FF00FF" label="Sold Out" />
+      <DonutChart percent={10} color="#FF00FF" label="Liquidity" />
       <DonutChart percent={10} color="#FF0000" label="Donation" />
       <DonutChart percent={5} color="#FFFF00" label="Marketing" />
-      <DonutChart percent={75} color="#22c55e" label="Liquidity" />
+      <DonutChart percent={75} color="#22c55e" label="Sold Out" />
     </div>
   );
 };
