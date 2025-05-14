@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Info, ChevronDown } from 'lucide-react';
+import DonutChartsGroup from '@/components/ui/DonutChartsGroup'; 
 
 export default function OPZPresaleUI() {
   const [eth, setEth] = useState('');
@@ -64,10 +66,16 @@ export default function OPZPresaleUI() {
     }
   };
 
+  
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-blue-900 text-white p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+     <div className="min-h-screen bg-gradient-to-br from-black to-blue-900 text-white p-4 md:p-6">
+  <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8"
+  initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}>
       {/* Left Section */}
-      <div className="flex flex-col justify-center">
+      <motion.div className="flex flex-col justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
         <h1 className="text-3xl font-bold mb-4">Join the Presale</h1>
         <h2 className="text-4xl font-bold mb-2">
           World's First <span className="text-blue-400">AI Powered</span> Wallet & DEX, Up To <span className="text-blue-400">97% APY</span>
@@ -95,10 +103,13 @@ export default function OPZPresaleUI() {
           <p className="text-sm text-gray-500 mb-1">Audit by:</p>
           <img src="/images/certik.png" alt="Certik Audit" className="h-20 filter invert" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Section */}
-      <div className="p-6 rounded-2xl w-full text-center shadow-2xl" style={{ backgroundColor: '#090c4f' }}>
+      <motion.div className="p-4 md:p-6 rounded-2xl w-full text-center shadow-2xl" style={{ backgroundColor: '#090c4f' }}
+      initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}>
         <h2 className="text-2xl font-bold text-blue-400 mb-1">OPZ Presale</h2>
         <h3 className="text-lg font-semibold text-white mb-4">Stage 13</h3>
 
@@ -134,7 +145,7 @@ export default function OPZPresaleUI() {
         </div>
 
         <div className="mb-4 bg-white rounded-xl p-2 text-left">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 mb-1">
             Balance: <span className="text-gray-700">0.0000 ETH</span>
             <span className="text-purple-600 text-[10px] font-semibold ml-1">MAX</span>
           </p>
@@ -202,7 +213,71 @@ export default function OPZPresaleUI() {
         <Button className="w-full bg-blue-900 text-gray-400 hover:bg-blue-600 hover:text-white font-bold" onClick={connectWallet}>
           {connected ? 'Wallet Connected' : 'Connect to wallet'}
         </Button>
+      </motion.div>
+
+       {/* Tokenomics Section */}
+      <motion.div className="w-full bg-black text-white py-10 px-4 md:px-6 mt-10 rounded-xl md:col-span-2"
+      initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}>
+        <h2 className="text-3xl font-bold text-yellow-400 mb-6 text-center md:text-left">Tokenomics</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+         {/* Left - Token Distribution Visual */}
+<div className="flex flex-col items-center justify-center gap-6 w-full">
+  {/* Big Circle Donut */}
+  <motion.div className="w-64 h-64 rounded-full relative"
+    style={{
+      width: '256px',
+      height: '256px',
+      borderTop: '30px solid #ec4899',    // pink-500
+      borderRight: '30px solid #dc2626',  // red-600
+      borderBottom: '30px solid #facc15', // yellow-300
+      borderLeft: '30px solid #22c55e'    // green-500
+    }}
+    animate={{ rotate: [0, 360] }}
+                transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
+  >
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="bg-black rounded-full w-32 h-32 flex flex-col items-center justify-center text-center border-4 border-white">
+        <span className="text-xl font-bold">1,00,000</span>
+        <span className="text-xs text-gray-400">Total Supply</span>
       </div>
+    </div>
+  </motion.div>
+
+  {/* Donut Charts (Custom Component) */}
+  <div className="flex justify-center items-center gap-6">
+   
+  </div>
+</div>
+
+
+          {/* Right - Token Metrics */}
+          <div className=" w-full flex flex-col ">
+            <div className="mb-6 w-full">
+             <DonutChartsGroup />
+             </div>
+             <motion.div className="bg-gradient-to-r from-blue-900 via-blue-1000 via-60% to-black to-80%  p-4 md:p-6 rounded-xl shadow-md w-full flex flex-col items-start "
+             initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}>
+            <h3 className="text-xl font-bold text-red-500 mb-4">Token Metrics</h3>
+            <ul className="space-y-2 text-sm">
+              <li><span className="font-bold text-yellow-400">Token Name:</span> Papigon Token</li>
+              <li><span className="font-bold text-yellow-400">Total Supply:</span> 1,00,000 PIN</li>
+              <li><span className="font-bold text-yellow-400">Token Type:</span> ERC-20</li>
+              <li><span className="font-bold text-yellow-400">Initial Price:</span> $2</li>
+              <li><span className="font-bold text-yellow-400">Listing Price:</span> $4</li>
+              <li><span className="font-bold text-yellow-400">Market Cap at Listing:</span> $3,00,000</li>
+            </ul>
+          </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
     </div>
   );
 }
